@@ -1,0 +1,21 @@
+<ng-map center="{{$ctrl.map.center}}" 
+        zoom="{{$ctrl.map.zoom}}"
+        default-style="true">
+        <marker ng-repeat="forkLift in $ctrl.forkLifts" 
+                position="{{forkLift.latitude}},{{forkLift.longitude}}"
+                id="{{forkLift.id}}"
+                on-click="$ctrl.showInfoWindow(forkLift.id)"
+                >
+        </marker>
+        <shape name="polygon"
+                ng-repeat="saddle in $ctrl.saddles"
+                paths="{{saddle.path}}" id="{{saddle.id}}">
+        </shape>
+        <info-window id="foo">
+                <div ng-non-bindable="">
+                        Lat: {{anchor.getPosition().lat()}}<br />
+                        Lng: {{anchor.getPosition().lng()}}<br />
+                </div>
+        </info-window>
+</ng-map>
+<span ng-bind="$ctrl.forkLifts"></span>
